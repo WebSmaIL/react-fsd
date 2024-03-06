@@ -1,0 +1,75 @@
+{
+  "name": "react-fsd",
+  "displayName": "react-fsd",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "react-fsd.helloWorld",
+        "title": "Hello World"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "when": "explorerResourceIsFolder",
+          "command": "react-fsd.helloWorld",
+          "group": "YourGroup@1"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "react-fsd-configuration",
+      "properties": {
+        "react-fsd.config": {
+          "type": "array",
+          "default": [
+            {
+              "type": "file",
+              "path": "/index.ts",
+              "content": "export {default as ${DEFAULT_NAME}} from './ui';"
+            },
+            {
+              "type": "dir",
+              "path": "/ui",
+              "content": ""
+            },
+            {
+              "type": "file",
+              "path": "/ui/index.tsx",
+              "content": "import React from 'react'\n\nconst ${DEFAULT_NAME} = () => {\n    return (\n        <div>${DEFAULT_NAME}</div>\n  )\n}\n\nexport default ${DEFAULT_NAME}"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.87.0",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "@typescript-eslint/eslint-plugin": "^7.0.2",
+    "@typescript-eslint/parser": "^7.0.2",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3",
+    "@vscode/test-cli": "^0.0.6",
+    "@vscode/test-electron": "^2.3.9"
+  }
+}
