@@ -1,38 +1,43 @@
 import * as vscode from "vscode";
+import { CONFIG_DATA } from "./config/CONFIG_DATA";
+import { validateData } from "./helpers/validate";
 
 export function activate(context: vscode.ExtensionContext) {
   console.log('Congratulations, your extension "react-fsd" is now active!');
 
   let disposable = vscode.commands.registerCommand(
-    "react-fsd.helloWorld",
+    "react-fsd.create_react-fsd_folder",
     (clickContext) => {
-      // TODO: need to add config in extension
-      // const config = vscode.workspace
-      //   .getConfiguration("react-fsd-configuration")
-      //   .get("config");
-
-      const input = vscode.window.showInputBox({
+      // show input box
+      const input: Thenable<string | undefined> = vscode.window.showInputBox({
         prompt: "Enter a folder name",
         validateInput(value) {
-          if (value === "") {
-            return "Folder name cannot be empty";
+          for (const iterator of validateData) {
+            if (iterator.validate(value)) {
+              return iterator.message;
+            }
           }
           return null;
         },
       });
 
+      // create folder with segments
       input.then((folderName: string | undefined) => {
         if (folderName && clickContext.path) {
           let uri = vscode.Uri.file(clickContext.path + `/${folderName}`);
           vscode.workspace.fs.createDirectory(uri);
 
-          let fileUri = vscode.Uri.file(
-            clickContext.path + `/${folderName}/index.ts`
-          );
-          vscode.workspace.fs.writeFile(
-            fileUri,
-            Buffer.from(`export {default as ${folderName}} from './ui';`)
-          );
+          CONFIG_DATA.forEach((config) => {
+            const uri = vscode.Uri.file(
+              clickContext.path + `/${folderName}` + config.path
+            );
+            vscode.workspace.fs.writeFile(
+              uri,
+              Buffer.from(
+                config.content?.replaceAll("DEFAULT_NAME", folderName) || ""
+              )
+            );
+          });
         }
       });
     }
@@ -41,5 +46,4 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(disposable);
 }
 
-// This method is called when your extension is deactivated
 export function deactivate() {}
