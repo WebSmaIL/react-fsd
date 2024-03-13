@@ -2,16 +2,15 @@
   "name": "react-fsd",
   "displayName": "react-fsd",
   "description": "",
-  "repository": {
-    "url": "https://github.com/WebSmaIL/react-fsd"
-  },
   "version": "0.0.1",
   "engines": {
-    "vscode": "^1.74.0"
+    "vscode": "^1.87.0"
   },
   "categories": [
     "Other"
   ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
@@ -27,19 +26,8 @@
           "group": "YourGroup@1"
         }
       ]
-    },
-    "configuration": {
-      "title": "react-fsd-configuration",
-      "properties": {
-        "react-fsd.config": {
-          "type": "array",
-          "default": []
-        }
-      }
     }
   },
-  "activationEvents": [],
-  "main": "./out/extension.js",
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
@@ -49,7 +37,7 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.74.0",
+    "@types/vscode": "^1.87.0",
     "@types/mocha": "^10.0.6",
     "@types/node": "18.x",
     "@typescript-eslint/eslint-plugin": "^7.0.2",
@@ -58,7 +46,5 @@
     "typescript": "^5.3.3",
     "@vscode/test-cli": "^0.0.6",
     "@vscode/test-electron": "^2.3.9"
-  },
-  "publisher": "Websmail",
-  "license": "MIT"
+  }
 }
