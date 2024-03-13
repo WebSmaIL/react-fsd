@@ -1,10 +1,10 @@
 {
   "name": "react-fsd",
   "displayName": "react-fsd",
-  "description": "",
-  "version": "0.0.1",
+  "description": "Automating FSD segment creation in React projects",
+  "version": "0.1.1",
   "engines": {
-    "vscode": "^1.87.0"
+    "vscode": "^1.74.0"
   },
   "categories": [
     "Other"
@@ -15,7 +15,7 @@
     "commands": [
       {
         "command": "react-fsd.create_react-fsd_folder",
-        "title": "Create React-FSD folder"
+        "title": "Create FSD slice"
       }
     ],
     "menus": {
@@ -37,7 +37,7 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.87.0",
+    "@types/vscode": "^1.74.0",
     "@types/mocha": "^10.0.6",
     "@types/node": "18.x",
     "@typescript-eslint/eslint-plugin": "^7.0.2",
@@ -46,5 +46,10 @@
     "typescript": "^5.3.3",
     "@vscode/test-cli": "^0.0.6",
     "@vscode/test-electron": "^2.3.9"
+  },
+  "publisher": "Websmail",
+  "license": "MIT",
+  "repository": {
+    "url": "https://github.com/WebSmaIL/react-fsd"
   }
 }
