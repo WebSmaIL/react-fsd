@@ -1,13 +1,19 @@
 import * as vscode from "vscode";
-import { CONFIG_DATA, EXCEPTION_KEYS, SEGMENTS_KEYS } from "./config";
-import { validateData } from "./helpers/validate";
+import { CONFIG_DATA, SEGMENTS_KEYS } from "./config";
+import { getFileExtension, validateData } from "./helpers";
 
 export function activate(context: vscode.ExtensionContext) {
   console.log('Congratulations, your extension "react-fsd" is now active!');
+  const EXTENSION_NAME = "react-fsd";
 
   let disposable = vscode.commands.registerCommand(
-    "react-fsd.create_react-fsd_folder",
+    `${EXTENSION_NAME}.create_${EXTENSION_NAME}_folder`,
     async (clickContext) => {
+      const config = vscode.workspace.getConfiguration(EXTENSION_NAME);
+      const EXCEPTION_KEYS: string[] = config.get("exceptionKeys") || [];
+      const LANGUAGE_TYPE: "javascript" | "typescript" =
+        config.get("languageSelector") || "typescript";
+
       const folderName = await vscode.window.showInputBox({
         prompt: "Enter a slice name",
         validateInput(value) {
@@ -41,8 +47,16 @@ export function activate(context: vscode.ExtensionContext) {
               labels?.includes(config.key) ||
               EXCEPTION_KEYS.includes(config.key)
             ) {
+              const fileExtension = getFileExtension(
+                LANGUAGE_TYPE,
+                config.fileExtension
+              );
+
               const uri = vscode.Uri.file(
-                clickContext.path + `/${folderName}` + config.path
+                clickContext.path +
+                  `/${folderName}` +
+                  config.path +
+                  fileExtension
               );
               vscode.workspace.fs.writeFile(
                 uri,

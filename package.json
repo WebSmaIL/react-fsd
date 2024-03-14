@@ -26,6 +26,33 @@
           "group": "YourGroup@1"
         }
       ]
+    },
+    "configuration": {
+      "title": "react-fsd",
+      "properties": {
+        "react-fsd.exceptionKeys": {
+          "type": "array",
+          "enum": [
+            "ui",
+            "lib",
+            "api",
+            "model"
+          ],
+          "default": [
+            "ui"
+          ],
+          "description": "Segment keys that will not be present when selected and will be created by default"
+        },
+        "react-fsd.languageSelector": {
+          "type": "string",
+          "enum": [
+            "javascript",
+            "typescript"
+          ],
+          "default": "typescript",
+          "description": "Selecting the programming language to be used when creating files"
+        }
+      }
     }
   },
   "scripts": {

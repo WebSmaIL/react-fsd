@@ -4,35 +4,55 @@ import { IConfig } from "../types";
 export const CONFIG_DATA: IConfig[] = [
   // INDEX
   {
-    path: "/index.ts",
+    path: "/index",
     content: `export * from './ui';`,
+    fileExtension: [
+      { language: "javascript", type: ".js" },
+      { language: "typescript", type: ".ts" },
+    ],
   },
 
   // LIB
   {
-    path: "/lib/index.ts",
+    path: "/lib/index",
     content: `export const libFunc = () => 'DEFAULT_NAME';`,
     key: "lib",
+    fileExtension: [
+      { language: "javascript", type: ".js" },
+      { language: "typescript", type: ".ts" },
+    ],
   },
 
   // MODEL
   {
-    path: "/model/index.ts",
+    path: "/model/index",
     content: `export const DEFAULT_NAME_MODEL = 'DEFAULT_NAME';`,
     key: "model",
+    fileExtension: [
+      { language: "javascript", type: ".js" },
+      { language: "typescript", type: ".ts" },
+    ],
   },
 
   // API
   {
-    path: "/api/index.ts",
+    path: "/api/index",
     content: `export const apiFunc = () => 'DEFAULT_NAME';`,
     key: "api",
+    fileExtension: [
+      { language: "javascript", type: ".js" },
+      { language: "typescript", type: ".ts" },
+    ],
   },
 
   // UI
   {
     key: "ui",
-    path: "/ui/index.tsx",
+    fileExtension: [
+      { language: "javascript", type: ".jsx" },
+      { language: "typescript", type: ".tsx" },
+    ],
+    path: "/ui/index",
     content: `import React from 'react'
 
 const DEFAULT_NAME = () => {
@@ -73,5 +93,3 @@ export const SEGMENTS_KEYS: QuickPickItem[] = [
     kind: QuickPickItemKind.Default,
   },
 ];
-
-export const EXCEPTION_KEYS = ["ui"];

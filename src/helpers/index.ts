@@ -1,3 +1,5 @@
+import { IFileExtensions } from "../types";
+
 export const validateData = [
   {
     message: "Folder name cannot be empty",
@@ -13,3 +15,10 @@ export const validateData = [
       /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(value),
   },
 ];
+
+export const getFileExtension = (
+  language: "javascript" | "typescript",
+  fileExtensions: IFileExtensions[]
+): ".js" | ".ts" | ".jsx" | ".tsx" => {
+  return fileExtensions.find((el) => el.language === language)?.type || ".ts";
+};
