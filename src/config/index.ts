@@ -5,7 +5,7 @@ export const CONFIG_DATA: IConfig[] = [
   // INDEX
   {
     path: "/index",
-    content: `export * from './ui';`,
+    content: `export {default as DEFAULT_NAME} from './ui';`,
     fileExtension: [
       { language: "javascript", type: ".js" },
       { language: "typescript", type: ".ts" },
