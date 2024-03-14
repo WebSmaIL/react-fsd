@@ -2,7 +2,7 @@
   "name": "react-fsd",
   "displayName": "react-fsd",
   "description": "Automating FSD segment creation in React projects",
-  "version": "0.1.1",
+  "version": "0.2.1",
   "engines": {
     "vscode": "^1.74.0"
   },
